@@ -1,7 +1,6 @@
 import { authHeader } from './authHeader';
 import {reactLocalStorage} from 'reactjs-localstorage';
-import { createBrowserHistory } from 'history';
-const history = createBrowserHistory();
+import { browserHistory } from 'react-router';
 
 export const userService = {
     login,
@@ -19,9 +18,10 @@ function login(email, password) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
     };
-    debugger
+    debugger;
     return fetch('http://localhost:5500/login/data', requestOptions)
         .then(response => {
+            console.log(response)
             if (!response.ok) {
                 return Promise.reject(response.statusText);
             }
@@ -40,17 +40,18 @@ function login(email, password) {
                 localStorage.setItem('user', JSON.stringify(user));
             }
             return user;
-        });
+        })
 }
 
 function logout() {
     // remove user from local storage to log user out
     debugger
     localStorage.removeItem('user');
-    history.push('/')
+    browserHistory.push('/')
 }
 
 function register(user) {
+    console.log('requestOptions', requestOptions)
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

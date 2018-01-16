@@ -10,7 +10,6 @@ class Dashboard extends React.Component {
             open: false,
         }
     }
-
     handleUser(_id){
         debugger
         const {user} = this.props;

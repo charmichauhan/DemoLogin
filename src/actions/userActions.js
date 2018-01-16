@@ -1,8 +1,7 @@
 import { userConstants } from './userConstants';
 import {alertActions} from './alertActions'
 import { userService } from '../services/userServices';
-import { createBrowserHistory } from 'history';
-const history = createBrowserHistory();
+import { browserHistory } from 'react-router';
 
 export const login = (email, password) => dispatch => {
         debugger
@@ -10,10 +9,10 @@ export const login = (email, password) => dispatch => {
         userService.login(email, password)
             .then(
                 user => {
-                    dispatch(success(user));
+                    dispatch(success(user)  );
                     debugger
-                    history.push('/dashboard');
-                    dispatch(alertActions.success('Login successful'));
+                    browserHistory.push('/dashboard');
+                    dispatch(alertActions.success('Login successfully done'));
                 },
                 error => {
                     dispatch(failure(error));
@@ -39,7 +38,7 @@ export const register=(user)=> {
             .then(
                 user => {
                     dispatch(success(user));
-                    history.push('/');
+                    browserHistory.push('/');
                     dispatch(alertActions.success('Registration successful'));
                 },
                 error => {
@@ -96,7 +95,7 @@ export const update=(user)=> {
             .then(
                 user => {
                     dispatch(success(user));
-                    history.push('/dashboard');
+                    browserHistory.push('/dashboard');
                     dispatch(alertActions.success('Update successfully'));
                 },
                 error => {
@@ -109,7 +108,6 @@ export const update=(user)=> {
     function failure(user, error) { return { type: userConstants.UPDATE_FAILURE, user, error } }
 }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
 export const Delete=(_id)=> {
     return dispatch => {
         dispatch(request(_id));
@@ -127,46 +125,4 @@ export const Delete=(_id)=> {
     function request(_id) { return { type: userConstants.DELETE_REQUEST, _id } }
     function success(_id) { return { type: userConstants.DELETE_SUCCESS, _id } }
     function failure(_id, error) { return { type: userConstants.DELETE_FAILURE, _id, error } }
-}
-
-export const likes=()=>{
-    return dispatch => {
-        dispatch(request());
-        debugger
-        userService.likes()
-            .then(
-                counts => {
-                    dispatch(success());
-                    dispatch(alertActions.success('Number of likes saved successfully'));
-                },
-                error => {
-                    dispatch(failure(error));
-                    dispatch(alertActions.error(error));
-                }
-            );
-    };
-    function request() { return { type: userConstants.LIKES_REQUEST,  } }
-    function success() { return { type: userConstants.LIKES_SUCCESS,  } }
-    function failure(error) { return { type: userConstants.LIKES_FAILURE, error } }
-}
-
-export const comments=(comment)=>{
-    return dispatch => {
-        dispatch(request(comment));
-        debugger
-        userService.comments(comment)
-            .then(
-                user => {
-                    dispatch(success(comment));
-                    dispatch(alertActions.success('comments saved successfully'));
-                },
-                error => {
-                    dispatch(failure(comment, error));
-                    dispatch(alertActions.error(error));
-                }
-            );
-    };
-    function request(comment) { return { type: userConstants.COMMENTS_REQUEST , comment} }
-    function success(comment) { return { type: userConstants.COMMENTS_SUCCESS, comment } }
-    function failure(comment, error) { return { type: userConstants.COMMENTS_FAILURE,comment, error } }
 }

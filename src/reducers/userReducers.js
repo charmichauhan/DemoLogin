@@ -25,7 +25,7 @@ export function users(state = {}, action) {
             };
         case userConstants.GETBYID_SUCCESS:
             return {
-                items: state.items.filter(user => user._id !== action._id)
+                    items: state.items.filter(user => user._id !== action._id)
             };
         case userConstants.GETBYID_FAILURE:
             return {
