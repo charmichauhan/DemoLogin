@@ -28,11 +28,11 @@ class App extends React.Component{
                         width='240px'
                         onRequestClose={ () => this.setState({isPaneOpenLeft: false}) }
                     >
-                        <div className="sidebar">
-                            <Link to="/register">Registration</Link>
-                            <br/><br/>
-                            <Link to="/dashboard">Dashboard</Link>
-                        </div>
+                    <div className="sidebar">
+                        <Link to="/register">Registration</Link>
+                        <br/><br/>
+                        <Link to="/dashboard">Dashboard</Link>
+                    </div>
                     </SlidingPane>
                     <div>
                         <img className="image"
@@ -40,11 +40,11 @@ class App extends React.Component{
                              src="http://mhfwellness.org/assets/website/menu-toggle.png"/>
                     </div>
                 </div>;
-                    <div className="App">
+                <div className="App">
                     <Header />
                     {this.props.children}
                     <Footer />
-                    </div>
+                </div>
                 }
         </div>
             );

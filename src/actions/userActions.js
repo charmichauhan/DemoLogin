@@ -3,25 +3,35 @@ import {alertActions} from './alertActions'
 import { userService } from '../services/userServices';
 import { browserHistory } from 'react-router';
 
-export const login = (email, password) => dispatch => {
-        debugger
-        dispatch(request({ email,password }));
-        userService.login(email, password)
-            .then(
-                user => {
-                    dispatch(success(user)  );
-                    debugger
-                    browserHistory.push('/dashboard');
-                    dispatch(alertActions.success('Login successfully done'));
-                },
-                error => {
-                    dispatch(failure(error));
-                    dispatch(alertActions.error(error));
-                }
-            );
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+export const login = (email, password) => {
+    return dispatch => {
+            debugger
+            dispatch(request({email, password}));
+            userService.login(email, password)
+                .then(
+                    user => {
+                        dispatch(success(user));
+                        debugger
+                        browserHistory.push('/dashboard');
+                        dispatch(alertActions.success('Login successfully done'));
+                    },
+                    error => {
+                        dispatch(failure(error));
+                        dispatch(alertActions.error(error));
+                    }
+                );
+        function request(user) {
+            return {type: userConstants.LOGIN_REQUEST, user}
+        }
+
+        function success(user) {
+            return {type: userConstants.LOGIN_SUCCESS, user}
+        }
+
+        function failure(error) {
+            return {type: userConstants.LOGIN_FAILURE, error}
+        }
+    };
 };
 
 export const  logout= ()=> {

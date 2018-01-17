@@ -7,7 +7,7 @@ export const userService = {
     logout,
     register,
     getAll,
-     getById,
+    getById,
     update,
     Delete,
 };

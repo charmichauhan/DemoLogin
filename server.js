@@ -24,8 +24,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '')));
 
 //********Registration**************
-
-//mongoose.connect('mongodb://charmic:lanetteam1@ds153853.mlab.com:53853/testdata');
+// const MONGODB_URI = 'mongodb://charmic:lanetteam1@ds257627.mlab.com:57627/logindemo';
+// mongoose.connect(MONGODB_URI);
 mongoose.connect('mongodb://localhost:27017/LoginDemo');
 const User=require('./models/user.js');
 

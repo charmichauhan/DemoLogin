@@ -10,6 +10,9 @@ class Dashboard extends React.Component {
             open: false,
         }
     }
+    handleSubmit(){
+        console.log('handle---')
+    }
     handleUser(_id){
         debugger
         const {user} = this.props;
@@ -22,6 +25,7 @@ class Dashboard extends React.Component {
 
         return (
             <div className="col-md-6 col-md-offset-3">
+                <form onSubmit={this.handleSubmit}>
                 <button className="btn btn-primary" style={{position: 'absolute', top: '0px', right: '-300px'}}
                         onClick={ ()=> {this.props.logout()}}>LogOut</button>
                 <br/><br/>
@@ -38,6 +42,7 @@ class Dashboard extends React.Component {
                     )}
                 </ul>
                 }
+                </form>
             </div>
         );
     }
