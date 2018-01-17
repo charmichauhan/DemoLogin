@@ -179,7 +179,7 @@ app.post('/login/data', function(req, res) {
         //     return res.send({msg: 'Invalid email or password'})
         // }
     });
-})
+});
 
 // app.get('/getAllUsers', function (req,res) {
 //     console.log('data')

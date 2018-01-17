@@ -9,15 +9,22 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         // reset login status
+        console.log('constructor')
         this.props.logout();
         this.state = {
             email: '',
             password: '',
             submitted: false
-        }
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    // componentDidMount(){
+    //     console.log('Did')
+    // }
+    // componentWillMount(){
+    //     console.log('Will')
+    // }
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
